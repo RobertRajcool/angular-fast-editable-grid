@@ -1,0 +1,25 @@
+<cdk-virtual-scroll-viewport itemSize="50" class="grid-viewport">
+    <div *cdkVirtualFor="let row of store.data(); trackBy: trackById" class="grid-row">
+        @for (col of columnKeys; track col) {
+        <div class="grid-cell" [style.width.px]="150">
+            @switch (getColumnType(col)) {
+            @case ('textarea') {
+            <textarea [ngModel]="row[col]" (ngModelChange)="store.updateCell(row.id, col, $event)"></textarea>
+            }
+            @case ('dropdown') {
+            <select [ngModel]="row[col]" (change)="onSelectChange($event, row.id, col)">
+                <option value="A">Option A</option>
+                <option value="B">Option B</option>
+            </select>
+            }
+            @case ('date') {
+            <input type="date" [ngModel]="row[col]" (ngModelChange)="store.updateCell(row.id, col, $event)" />
+            }
+            @default {
+            <input type="text" [ngModel]="row[col]" (ngModelChange)="store.updateCell(row.id, col, $event)" />
+            }
+            }
+        </div>
+        }
+    </div>
+</cdk-virtual-scroll-viewport>
