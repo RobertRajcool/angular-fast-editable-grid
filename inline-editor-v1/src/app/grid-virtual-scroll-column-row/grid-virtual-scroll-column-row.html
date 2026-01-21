@@ -1,0 +1,40 @@
+<div class="grid-container" (scroll)="onScroll($event)">
+
+    <cdk-virtual-scroll-viewport class="grid-viewport" [itemSize]="rowHeight">
+
+        <div *cdkVirtualFor="let row of rows; let r = index" class="grid-row">
+
+            <div *ngFor="let col of visibleCols()" class="grid-cell" [style.width.px]="col.width"
+                [style.left.px]="col.left">
+
+                <!-- TEXT -->
+                <input *ngIf="col.editor === 'text'" [value]="row[col.field]"
+                    (input)="update(r, col, $event.target.value)" />
+
+                <!-- SELECT -->
+                <select *ngIf="col.editor === 'select'" [value]="row[col.field]"
+                    (change)="update(r, col, $event.target.value)">
+                    <option *ngFor="let o of col.options" [value]="o.value">
+                        {{ o.label }}
+                    </option>
+                </select>
+
+                <!-- DATE -->
+                <input *ngIf="col.editor === 'date'" type="date" [value]="row[col.field]"
+                    (change)="update(r, col, $event.target.value)" />
+
+                <!-- RADIO -->
+                <div *ngIf="col.editor === 'radio'" class="radio-group">
+                    <label *ngFor="let o of col.options">
+                        <input type="radio" [checked]="row[col.field] === o.value" (change)="update(r, col, o.value)" />
+                        {{ o.label }}
+                    </label>
+                </div>
+
+            </div>
+
+        </div>
+
+    </cdk-virtual-scroll-viewport>
+
+</div>

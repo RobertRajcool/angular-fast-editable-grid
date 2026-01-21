@@ -1,0 +1,39 @@
+.grid-container {
+    height: 600px;
+    overflow: auto;
+    position: relative;
+    border: 1px solid #ccc;
+}
+
+.grid-viewport {
+    height: 600px;
+    width: max-content;
+}
+
+.grid-row {
+    display: flex;
+    position: relative;
+}
+
+.grid-cell {
+    position: absolute;
+    height: 36px;
+    padding: 4px 6px;
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+input,
+select {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+.radio-group {
+    display: flex;
+    gap: 6px;
+}

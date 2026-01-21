@@ -1,0 +1,33 @@
+/* pool-grid.component.scss */
+.viewport {
+  height: 600px;
+  width: 1000px;
+  overflow: auto;
+  border: 1px solid #ccc;
+  position: relative;
+}
+
+.canvas {
+  position: relative;
+}
+
+.row {
+  position: absolute;
+  display: flex;
+  height: 36px;
+}
+
+.cell {
+  position: absolute;
+  height: 36px;
+  padding: 4px;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+input, select {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+}

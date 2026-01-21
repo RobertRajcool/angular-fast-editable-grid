@@ -1,0 +1,45 @@
+<!-- pool-grid.component.html -->
+<div
+  #viewport
+  class="viewport"
+  (scroll)="onScroll()">
+
+  <div
+    class="canvas"
+    [style.height.px]="rows.length * rowHeight"
+    [style.width.px]="columns.reduce((a,c)=>a+c.width,0)">
+
+    <div
+      *ngFor="let pr of rowPool; let i = index"
+      class="row"
+      [style.transform]="'translate3d(0,' + (startRow + i) * rowHeight + 'px,0)'">
+
+      <div
+        *ngFor="let pc of colPool; let j = index"
+        class="cell"
+        *ngIf="columns[startCol + j] && rows[startRow + i]"
+        [style.width.px]="columns[startCol + j].width"
+        [style.transform]="'translate3d(' + colLeft(startCol + j) + 'px,0,0)'">
+
+        <input *ngIf="columns[startCol + j].editor === 'text'"
+          [value]="rows[startRow + i][columns[startCol + j].field]"
+          (input)="update(startRow+i, columns[startCol+j], $event.target.value)" />
+
+        <select *ngIf="columns[startCol + j].editor === 'select'"
+          [value]="rows[startRow + i][columns[startCol + j].field]"
+          (change)="update(startRow+i, columns[startCol+j], $event.target.value)">
+          <option *ngFor="let o of columns[startCol + j].options" [value]="o.value">
+            {{o.label}}
+          </option>
+        </select>
+
+        <input *ngIf="columns[startCol + j].editor === 'date'"
+          type="date"
+          [value]="rows[startRow + i][columns[startCol + j].field]"
+          (change)="update(startRow+i, columns[startCol+j], $event.target.value)" />
+
+      </div>
+    </div>
+
+  </div>
+</div>

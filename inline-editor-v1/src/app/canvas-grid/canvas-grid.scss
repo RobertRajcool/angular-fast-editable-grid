@@ -1,0 +1,17 @@
+.grid-host {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+canvas {
+    display: block;
+    border: 1px solid #ccc;
+}
+.editor {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #2563eb;
+    padding: 2px;
+    z-index: 10;
+}
