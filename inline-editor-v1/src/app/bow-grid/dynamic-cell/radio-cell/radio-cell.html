@@ -1,0 +1,6 @@
+<div class="radio-group" [title]="errorMessage()">
+    <label *ngFor="let o of column.options">
+        <input type="radio" [value]="o.value" [formControl]="control" />
+        {{ o.label }}
+    </label>
+</div>

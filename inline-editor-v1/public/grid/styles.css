@@ -1,0 +1,34 @@
+/* styles.css */
+#grid {
+    position: relative;
+    overflow: auto;
+    border: 1px solid #ccc;
+}
+
+.grid {
+    position: relative;
+}
+
+.row {
+    position: absolute;
+    height: 30px;
+}
+
+.cell {
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 6px;
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    background: white;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+.cell-editor {
+    position: absolute;
+    z-index: 10;
+    box-sizing: border-box;
+}

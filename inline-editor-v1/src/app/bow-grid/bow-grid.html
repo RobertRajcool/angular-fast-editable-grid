@@ -1,0 +1,60 @@
+<div class="h-scroll" #hScroll (scroll)="onHorizontalScroll()">
+  <div class="table" [style.min-width.px]="totalWidth">
+    <!-- Sticky Header -->
+    <div class="row header" [style.transform]="'translateX(-' + translateX + 'px)'">
+      <div *ngFor="let col of visibleCols; trackBy: trackCol"
+           class="cell header-cell"
+           [style.width.px]="col.width">
+        {{ col.label }}
+      </div>
+    </div>
+
+    <!-- Rows -->
+    <div *ngFor="let row of rows; trackBy: trackRow" class="row">
+      <div [style.transform]="'translateX(-' + translateX + 'px)'">
+        <div *ngFor="let col of visibleCols; trackBy: trackCol"
+             class="cell"
+             [style.width.px]="col.width">
+
+          <!-- Dynamic editors -->
+          <ng-container [ngSwitch]="col.editor">
+
+            <!-- Text -->
+            <input *ngSwitchCase="'text'" type="text"
+                   [value]="row[col.key]"
+                   (input)="row[col.key]=$any($event.target).value" />
+
+            <!-- Radio -->
+            <div *ngSwitchCase="'radio'" class="radio-group">
+              <label *ngFor="let opt of col.options">
+                <input type="radio"
+                       [name]="'radio-'+row.id+'-'+col.key"
+                       [value]="opt"
+                       [checked]="row[col.key] === opt"
+                       (change)="row[col.key]=opt" />
+                {{ opt }}
+              </label>
+            </div>
+
+            <!-- Select -->
+            <select *ngSwitchCase="'select'" [(ngModel)]="row[col.key]">
+              <option *ngFor="let opt of col.options" [value]="opt">{{ opt }}</option>
+            </select>
+
+            <!-- Date -->
+            <input *ngSwitchCase="'date'" type="date"
+                   [value]="row[col.key]"
+                   (input)="row[col.key]=$any($event.target).value" />
+
+            <!-- Default -->
+            <input *ngSwitchDefault type="text"
+                   [value]="row[col.key]"
+                   (input)="row[col.key]=$any($event.target).value" />
+
+          </ng-container>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

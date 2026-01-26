@@ -1,0 +1,83 @@
+/* Frozen column layout */
+.ht-root {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 110px);
+  border: 1px solid #cfcfcf;
+  font-family: Arial, sans-serif;
+  background: #fff;
+}
+
+.ht-header-wrapper {
+  display: flex;
+  flex-shrink: 0;
+  border-bottom: 1px solid #cfcfcf;
+}
+
+.ht-frozen-header {
+  overflow: hidden;
+  background: #f5f5f5;
+  border-right: 2px solid #999;
+}
+
+.ht-scrollable-header {
+  flex: 1;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+
+.ht-body-wrapper {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.ht-frozen-body {
+  overflow: hidden;
+  border-right: 2px solid #999;
+}
+
+.ht-scrollable-body {
+  flex: 1;
+  overflow: auto;
+}
+
+/* Tables */
+.ht-table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: max-content;
+  min-width: 100%;
+}
+
+/* Cells */
+.ht-header-cell,
+.ht-cell {
+  border: 1px solid #d6d6d6;
+  padding: 6px 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+
+.ht-frozen-cell {
+  background: #fafafa;
+  position: relative;
+}
+
+/* Header cells */
+.ht-header-cell {
+  background: #fafafa;
+  font-weight: bold;
+  border-bottom: none;
+  text-align: left;
+}
+
+/* Scrollbar spacer cell */
+.ht-header-spacer {
+  padding: 0;
+  border: none;
+  background: #f5f5f5;
+}

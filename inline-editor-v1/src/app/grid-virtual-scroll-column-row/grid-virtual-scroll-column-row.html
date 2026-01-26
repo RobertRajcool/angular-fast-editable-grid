@@ -9,11 +9,11 @@
 
                 <!-- TEXT -->
                 <input *ngIf="col.editor === 'text'" [value]="row[col.field]"
-                    (input)="update(r, col, $event.target.value)" />
+                    (input)="update(r, col, $event)" />
 
                 <!-- SELECT -->
                 <select *ngIf="col.editor === 'select'" [value]="row[col.field]"
-                    (change)="update(r, col, $event.target.value)">
+                    (change)="update(r, col,$event)">
                     <option *ngFor="let o of col.options" [value]="o.value">
                         {{ o.label }}
                     </option>
@@ -21,7 +21,7 @@
 
                 <!-- DATE -->
                 <input *ngIf="col.editor === 'date'" type="date" [value]="row[col.field]"
-                    (change)="update(r, col, $event.target.value)" />
+                    (change)="update(r, col, $event)" />
 
                 <!-- RADIO -->
                 <div *ngIf="col.editor === 'radio'" class="radio-group">

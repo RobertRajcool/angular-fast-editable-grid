@@ -1,24 +1,46 @@
-import { ScrollingModule } from '@angular/cdk/scrolling';
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
-export type CellType = 'text' | 'textarea' | 'select' | 'date';
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+  Input,
+  OnDestroy,
+  NgZone,
+  ChangeDetectionStrategy
+} from '@angular/core';
 
-export interface GridColumn {
-  field: string;
-  header: string;
-  width?: number;
-  type: CellType;
-  options?: { label: string; value: any }[];
-}
+import { Grid, HighlightPlugin } from '../../../public/grid/src/index.js';
+
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-fast-grid',
-  imports: [ScrollingModule],
+  imports: [CommonModule],
   templateUrl: './fast-grid.html',
   styleUrl: './fast-grid.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FastGrid {
-  @Input() columns: GridColumn[] = [];
-  @Input() rows: any[] = [];
+export class FastGrid implements AfterViewInit, OnDestroy {
+  @ViewChild('host', { static: true }) host!: ElementRef<HTMLDivElement>;
 
-  trackRow = (_: number, row: any) => row.id;
+  @Input() data: any[] = [];
+  @Input() columns: any[] = [];
+
+  private grid!: Grid;
+
+  constructor(private zone: NgZone) { }
+
+  ngAfterViewInit() {
+    this.zone.runOutsideAngular(() => {
+      this.grid = new Grid(this.host.nativeElement, {
+        data: this.data,
+        columns: this.columns,
+        rowHeight: 32,
+        defaultColWidth: 120
+      });
+    });
+  }
+
+  ngOnDestroy() {
+    this.grid?.destroy();
+  }
 }

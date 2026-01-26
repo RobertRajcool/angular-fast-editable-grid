@@ -1,4 +1,4 @@
-import { ColumnDef } from './column.model';
+import { ColumnDef } from "./grid.types";
 
 export class DataEngine {
   data: any[];

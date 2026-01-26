@@ -1,0 +1,8 @@
+<select class="cell-input" [class.invalid]="control.invalid && control.touched" [formControl]="control"
+    [title]="errorMessage()">
+
+    <option *ngFor="let o of column.options" [value]="o.value">
+        {{ o.label }}
+    </option>
+
+</select>

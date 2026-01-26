@@ -1,0 +1,6 @@
+<ng-container [ngSwitch]="column.type">
+    <app-text-cell *ngSwitchCase="'text'" [row]="row" [column]="column" />
+    <app-select-cell *ngSwitchCase="'select'" [row]="row" [column]="column" />
+    <app-date-cell *ngSwitchCase="'date'" [row]="row" [column]="column" />
+    <app-radio-cell *ngSwitchCase="'radio'" [row]="row" [column]="column" />
+</ng-container>

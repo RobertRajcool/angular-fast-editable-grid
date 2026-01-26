@@ -5,7 +5,7 @@ import { GridColumn } from './grid.types';
   selector: 'app-pool-grid',
   imports: [],
   templateUrl: './pool-grid.html',
-  styleUrl: './pool-grid.css',
+  styleUrl: './pool-grid.scss',
 })
 export class PoolGrid implements AfterViewInit {
   @Input() rows: any[] = [];

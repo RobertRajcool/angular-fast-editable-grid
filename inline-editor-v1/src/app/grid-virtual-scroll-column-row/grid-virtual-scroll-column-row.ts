@@ -1,3 +1,4 @@
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { GridColumn } from './grid.types';
 import {
   Component,
@@ -6,9 +7,10 @@ import {
   signal,
   computed
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-grid-virtual-scroll-column-row',
-  imports: [],
+  imports: [ScrollingModule, CommonModule],
   templateUrl: './grid-virtual-scroll-column-row.html',
   styleUrl: './grid-virtual-scroll-column-row.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

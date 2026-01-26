@@ -6,8 +6,7 @@
 
   <div
     class="canvas"
-    [style.height.px]="rows.length * rowHeight"
-    [style.width.px]="columns.reduce((a,c)=>a+c.width,0)">
+    [style.height.px]="rows.length * rowHeight">
 
     <div
       *ngFor="let pr of rowPool; let i = index"
@@ -17,17 +16,14 @@
       <div
         *ngFor="let pc of colPool; let j = index"
         class="cell"
-        *ngIf="columns[startCol + j] && rows[startRow + i]"
         [style.width.px]="columns[startCol + j].width"
         [style.transform]="'translate3d(' + colLeft(startCol + j) + 'px,0,0)'">
 
         <input *ngIf="columns[startCol + j].editor === 'text'"
-          [value]="rows[startRow + i][columns[startCol + j].field]"
-          (input)="update(startRow+i, columns[startCol+j], $event.target.value)" />
+          [value]="rows[startRow + i][columns[startCol + j].field]"/>
 
         <select *ngIf="columns[startCol + j].editor === 'select'"
-          [value]="rows[startRow + i][columns[startCol + j].field]"
-          (change)="update(startRow+i, columns[startCol+j], $event.target.value)">
+          [value]="rows[startRow + i][columns[startCol + j].field]">
           <option *ngFor="let o of columns[startCol + j].options" [value]="o.value">
             {{o.label}}
           </option>
@@ -35,8 +31,7 @@
 
         <input *ngIf="columns[startCol + j].editor === 'date'"
           type="date"
-          [value]="rows[startRow + i][columns[startCol + j].field]"
-          (change)="update(startRow+i, columns[startCol+j], $event.target.value)" />
+          [value]="rows[startRow + i][columns[startCol + j].field]" />
 
       </div>
     </div>
